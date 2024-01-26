@@ -1,0 +1,20 @@
+service: farmwiseApi
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  memorySize: 2048
+  stage: dev
+  timeout: 15
+  region: us-east-1
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http: ANY /{proxy+}
+      - http: ANY /
+    environment:
+      DB_URL: mongodb+srv://adithyamdileep:Y1BN0vHNpyLxbZe8@cluster0.obv4zeh.mongodb.net/farmwise
+      JWT_SECRET_Key: fe4f9169e55a9f8e987c755da04a4fdd30e910c021d1eacb8d781d6a199a91f6
